@@ -22,4 +22,7 @@ Dummy::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  # Set to_time to preserve timezone for Rails 8.1 compatibility
+  config.active_support.to_time_preserves_timezone = :zone
 end

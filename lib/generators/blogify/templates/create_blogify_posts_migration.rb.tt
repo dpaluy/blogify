@@ -1,0 +1,21 @@
+# frozen_string_literal: true
+
+class Create<%= @table_name.camelize %> < ActiveRecord::Migration[<%= ActiveRecord::Migration.current_version %>]
+  def change
+    create_table :<%= @table_name %> do |t|
+      t.string :title, null: false
+      t.text :short_description
+      t.text :content
+      t.datetime :published_at
+      t.json :meta_data
+      t.string :author
+      t.string :slug, null: false
+      t.string :meta_title
+      t.text :meta_description
+
+      t.timestamps
+    end
+
+    add_index :<%= @table_name %>, :slug, unique: true
+  end
+end

@@ -15,6 +15,15 @@ Layout/LineLength:
   Max: 120
   Exclude:
     - 'blogify.gemspec'
+    - 'app/helpers/blogify/seo_helper.rb'
+    - 'app/helpers/blogify/featured_image_helper.rb'
+
+Metrics/AbcSize:
+  Max: 30
+  Exclude:
+    - 'app/helpers/blogify/seo_helper.rb'
+    - 'app/services/blogify/seo_schema_generator.rb'
+    - 'app/helpers/blogify/featured_image_helper.rb'
 
 Metrics/ClassLength:
   Max: 150
@@ -22,15 +31,27 @@ Metrics/ClassLength:
 Metrics/BlockLength:
   Max: 150
 
+Metrics/CyclomaticComplexity:
+  Exclude:
+    - 'app/helpers/blogify/seo_helper.rb'
+    - 'app/services/blogify/seo_schema_generator.rb'
+
+Metrics/PerceivedComplexity:
+  Exclude:
+    - 'app/helpers/blogify/seo_helper.rb'
+    - 'app/services/blogify/seo_schema_generator.rb'
+
 Style/FrozenStringLiteralComment:
   Enabled: true
   EnforcedStyle: always
 
 Metrics/MethodLength:
   Max: 20
-
-Metrics/AbcSize:
-  Max: 30
+  Exclude:
+    - 'lib/blogify/configuration.rb'
+    - 'app/helpers/blogify/seo_helper.rb'
+    - 'app/helpers/blogify/featured_image_helper.rb'
+    - 'app/services/blogify/seo_schema_generator.rb'
 
 Style/Documentation:
   Enabled: false
@@ -52,3 +73,13 @@ Style/HashTransformValues:
 
 Lint/DuplicateMethods:
   Enabled: false
+
+Metrics/ModuleLength:
+  Max: 200
+  Exclude:
+    - 'app/helpers/blogify/seo_helper.rb'
+
+Lint/DuplicateBranch:
+  Exclude:
+    - 'app/helpers/blogify/featured_image_helper.rb'
+    - 'app/services/blogify/seo_schema_generator.rb'

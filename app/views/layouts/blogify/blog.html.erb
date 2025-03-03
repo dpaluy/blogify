@@ -1,13 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html lang="<%= Blogify::Engine.config.respond_to?(:locale) ? Blogify::Engine.config.locale : 'en' %>">
   <head>
-    <title>Blog Layout</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title><%= content_for?(:title) ? yield(:title) : "Blog Layout" %></title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+
+    <%= yield(:seo_tags) if content_for?(:seo_tags) %>
+    <%= yield(:head) if content_for?(:head) %>
   </head>
   <body>
     <header>
-      <h1>Blog Layout</h1>
+      <h1><%= content_for?(:header) ? yield(:header) : "Blog Layout" %></h1>
     </header>
     <main>
       <%= yield %>

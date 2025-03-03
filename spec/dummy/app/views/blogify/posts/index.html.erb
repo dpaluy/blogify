@@ -1,0 +1,19 @@
+<h1>Blog Posts</h1>
+
+<% if @posts.any? %>
+  <div class="posts-list">
+    <% @posts.each do |post| %>
+      <div class="post-item">
+        <h2><%= link_to post.title, post_path(post) %></h2>
+        <% if post.excerpt.present? %>
+          <div class="post-excerpt"><%= post.excerpt %></div>
+        <% end %>
+        <div class="post-meta">
+          Published: <%= post.published_at.strftime("%B %d, %Y") %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <p>No posts found.</p>
+<% end %>

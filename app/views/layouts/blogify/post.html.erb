@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="<%= Blogify::Engine.config.respond_to?(:locale) ? Blogify::Engine.config.locale : 'en' %>">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title><%= content_for?(:title) ? yield(:title) : "Post Layout" %></title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= yield(:seo_tags) if content_for?(:seo_tags) %>
+    <%= yield(:head) if content_for?(:head) %>
+  </head>
+  <body>
+    <header>
+      <h1><%= content_for?(:header) ? yield(:header) : "Post Layout" %></h1>
+    </header>
+    <main>
+      <post itemscope itemtype="https://schema.org/BlogPosting">
+        <%= yield %>
+      </post>
+    </main>
+  </body>
+</html>

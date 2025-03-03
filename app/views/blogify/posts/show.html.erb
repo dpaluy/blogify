@@ -1,0 +1,30 @@
+<% content_for :title do %>
+  <%= @post.meta_title || @post.title %>
+<% end %>
+
+<% content_for :header do %>
+  <%= @post.title %>
+<% end %>
+
+<% content_for :seo_tags do %>
+  <%= all_seo_tags(@post) %>
+<% end %>
+
+<header>
+  <h2 itemprop="headline"><%= @post.title %></h2>
+  <% if @post.published_at.present? %>
+    <time itemprop="datePublished" datetime="<%= @post.published_at.iso8601 %>">
+      <%= @post.published_at.strftime("%B %d, %Y") %>
+    </time>
+  <% end %>
+</header>
+
+<div itemprop="postBody">
+  <%= @post.content %>
+</div>
+
+<% if @post.respond_to?(:featured_image) && @post.featured_image.attached? %>
+  <div class="featured-image">
+    <%= image_tag @post.featured_image, alt: @post.meta_title || @post.title, itemprop: "image" %>
+  </div>
+<% end %>

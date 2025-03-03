@@ -14,7 +14,8 @@ Dummy::Application.configure do
 
   config.static_cache_control = "public, max-age=3600"
 
-  config.eager_load = false if Rails.version =~ /\A4/
+  # Set eager loading to false for all Rails versions
+  config.eager_load = false
 
   # Show full error reports and disable caching.
   config.consider_all_requests_local       = true
@@ -32,4 +33,7 @@ Dummy::Application.configure do
 
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
+
+  # Set to_time to preserve timezone for Rails 8.1 compatibility
+  config.active_support.to_time_preserves_timezone = :zone
 end

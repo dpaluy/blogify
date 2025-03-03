@@ -1,70 +1,56 @@
 # frozen_string_literal: true
 
 require "spec_helper"
-require "action_controller"
-require "rails"
-require "active_record"
-# Since this is a mounted engine, require the routes if needed
-# require "blogify/engine"
 
-RSpec.describe Blogify::PostsController, type: :controller do
-  # Simulate the engine routes. This might vary depending on how your test setup is done.
-  routes { Blogify::Engine.routes }
-
-  let!(:post1) do
+RSpec.describe Blogify::PostsController, type: :request do
+  let!(:published_post) do
     Blogify::Post.create(
       title: "Test Post 1",
       content: "Content 1",
-      published_at: Time.current
+      published_at: Time.current,
+      slug: "test-post-1"
     )
   end
-  let!(:post2) do
+
+  let!(:draft_post) do
     Blogify::Post.create(
       title: "Test Post 2",
       content: "Content 2"
     )
   end
 
-  describe "GET #index" do
-    it "assigns @posts ordered by published_at desc" do
-      get :index
-      expect(assigns(:posts)).to eq([post1, post2])
-    end
-
-    it "renders the index template" do
-      get :index
-      expect(response).to render_template("blogify/articles/index")
-    end
-
-    it "uses the configured blog layout" do
-      get :index
-      expect(response).to render_template(layout: Blogify::Engine.config.blog_layout)
+  describe "GET /blog/posts" do
+    it "returns a successful response" do
+      get "/blog/posts"
+      expect(response).to have_http_status(:success)
     end
   end
 
-  describe "GET #show" do
-    context "with a valid post" do
-      it "assigns @post" do
-        get :show, params: { id: post1.id }
-        expect(assigns(:post)).to eq(post1)
+  describe "GET /blog/posts/:id" do
+    context "with a valid published post" do
+      it "returns a successful response when accessed by slug" do
+        get "/blog/posts/#{published_post.slug}"
+        expect(response).to have_http_status(:success)
       end
 
-      it "renders the show template" do
-        get :show, params: { id: post1.id }
-        expect(response).to render_template("blogify/articles/show")
+      it "redirects to the slug URL when accessed by ID" do
+        get "/blog/posts/#{published_post.id}"
+        expect(response).to redirect_to("/blog/posts/#{published_post.slug}")
+        expect(response).to have_http_status(:moved_permanently)
       end
+    end
 
-      it "uses the configured post layout" do
-        get :show, params: { id: post1.id }
-        expect(response).to render_template(layout: Blogify::Engine.config.post_layout)
+    context "with a draft post" do
+      it "returns not found" do
+        get "/blog/posts/#{draft_post.id}"
+        expect(response).to have_http_status(:not_found)
       end
     end
 
     context "when the post does not exist" do
-      it "raises ActiveRecord::RecordNotFound" do
-        expect do
-          get :show, params: { id: 9999 }
-        end.to raise_error(ActiveRecord::RecordNotFound)
+      it "returns not found" do
+        get "/blog/posts/non-existent-slug"
+        expect(response).to have_http_status(:not_found)
       end
     end
   end

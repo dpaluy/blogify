@@ -23,5 +23,6 @@ Gem::Specification.new do |spec|
     "rubygems_mfa_required" => "true"
   }
 
+  spec.add_dependency "activestorage", ">= 8.0.0"
   spec.add_dependency "rails", ">= 8.0.0"
 end

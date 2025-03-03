@@ -1,0 +1,18 @@
+<post class="post">
+  <header>
+    <h1><%= @post.title %></h1>
+    <% if @post.published_at.present? %>
+      <div class="post-meta">
+        Published: <%= @post.published_at.strftime("%B %d, %Y") %>
+      </div>
+    <% end %>
+  </header>
+
+  <div class="post-content">
+    <%= @post.content %>
+  </div>
+</post>
+
+<div class="post-navigation">
+  <%= link_to "Back to Blog", posts_path %>
+</div>

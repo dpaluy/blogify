@@ -1,0 +1,33 @@
+<% content_for :title do %>
+  <%= Blogify::Engine.config.respond_to?(:blog_title) ? Blogify::Engine.config.blog_title : "Blog" %>
+<% end %>
+
+<% content_for :header do %>
+  <%= Blogify::Engine.config.respond_to?(:blog_title) ? Blogify::Engine.config.blog_title : "Blog" %>
+<% end %>
+
+<% content_for :seo_tags do %>
+  <% description = Blogify::Engine.config.respond_to?(:blog_description) ? Blogify::Engine.config.blog_description : "Blog posts" %>
+  <%= tag.meta(name: "description", content: description) %>
+  <%= tag.meta(property: "og:title", content: content_for(:title)) %>
+  <%= tag.meta(property: "og:description", content: description) %>
+  <%= tag.meta(property: "og:type", content: "website") %>
+  <%= tag.meta(property: "og:url", content: blogify.posts_url) %>
+  <%= tag.meta(name: "twitter:card", content: "summary") %>
+<% end %>
+
+<div class="posts-list">
+  <% @posts.each do |post| %>
+    <post class="post-summary">
+      <h2><%= link_to post.title, blogify.post_path(post) %></h2>
+      <% if post.published_at.present? %>
+        <time datetime="<%= post.published_at.iso8601 %>">
+          <%= post.published_at.strftime("%B %d, %Y") %>
+        </time>
+      <% end %>
+      <% if post.meta_description.present? %>
+        <p class="post-excerpt"><%= post.meta_description %></p>
+      <% end %>
+    </post>
+  <% end %>
+</div>

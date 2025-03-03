@@ -1,0 +1,19 @@
+# frozen_string_literal: true
+
+published_post:
+  title: "Published Post"
+  slug: "published-post"
+  content: "This is a published post content."
+  excerpt: "This is a published post excerpt."
+  published_at: <%= Time.now - 1.day %>
+  created_at: <%= Time.now - 2.days %>
+  updated_at: <%= Time.now - 1.day %>
+
+draft_post:
+  title: "Draft Post"
+  slug: "draft-post"
+  content: "This is a draft post content."
+  excerpt: "This is a draft post excerpt."
+  published_at:
+  created_at: <%= Time.now - 1.day %>
+  updated_at: <%= Time.now - 1.day %>

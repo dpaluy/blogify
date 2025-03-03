@@ -1,8 +1,0 @@
-<h2>Blog Posts</h2>
-<% @posts.each do |post| %>
-  <post>
-    <h3><%= link_to post.title, post_path(post) %></h3>
-    <p><%= post.short_description %></p>
-    <hr>
-  </post>
-<% end %>
