@@ -25,3 +25,4 @@ pkg
 
 Gemfile.lock
 .specstory/
+.ruby-lsp/

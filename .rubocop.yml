@@ -16,7 +16,6 @@ Layout/LineLength:
   Exclude:
     - 'blogify.gemspec'
 
-
 Metrics/ClassLength:
   Max: 150
 
