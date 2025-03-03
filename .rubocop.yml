@@ -19,6 +19,9 @@ Layout/LineLength:
 Metrics/ClassLength:
   Max: 150
 
+Metrics/BlockLength:
+  Max: 150
+
 Style/FrozenStringLiteralComment:
   Enabled: true
   EnforcedStyle: always
