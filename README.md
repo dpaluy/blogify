@@ -1,5 +1,8 @@
 # Blogify - Rails Engine for Blogs
 
+[![Gem Version](https://badge.fury.io/rb/blogify.svg)](https://badge.fury.io/rb/blogify)
+[![CI Status](https://github.com/dpaluy/blogify/actions/workflows/main.yml/badge.svg)](https://github.com/dpaluy/blogify/actions)
+
 Blogify is a powerful Rails engine that provides a complete blogging solution for your Rails application. It includes features for creating, managing, and displaying blog posts with categories, tags, and comments.
 
 ## Installation
