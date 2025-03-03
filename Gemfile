@@ -7,3 +7,4 @@ gemspec
 gem "rake", "~> 13.2.1"
 gem "rspec", "~> 3.13.0"
 gem "rubocop", "~> 1.73.1"
+gem "sqlite3", "~> 2.6.0"

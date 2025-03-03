@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-class CreateBlogifyArticles < ActiveRecord::Migration[8.0]
+class CreateBlogifyPosts < ActiveRecord::Migration[8.0]
   def change
-    create_table :blogify_articles do |t|
+    create_table :blogify_posts do |t|
       t.string :title
       t.text :short_description
       t.string :featured_image

@@ -1,0 +1,15 @@
+sqlite: &sqlite
+  adapter: sqlite3
+  database: db/<%= ENV["RAILS_ENV"] %>.m.sqlite3
+
+defaults: &defaults
+  pool: 5
+  timeout: 5000
+  host: localhost
+  <<: *sqlite
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults

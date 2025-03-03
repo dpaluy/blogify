@@ -6,6 +6,6 @@ module Blogify
 
     # Configuration options for layouts, etc.
     config.blog_layout = "blogify/blog"
-    config.article_layout = "blogify/article"
+    config.post_layout = "blogify/post"
   end
 end

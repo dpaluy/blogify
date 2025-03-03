@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.version       = Blogify::VERSION
   spec.authors       = ["David Paluy"]
   spec.summary       = "Rails engine for adding blog functionality"
-  spec.homepage      = "http://github.com/dpaluy/blogify"
+  spec.homepage      = "https://majesticlabs.dev"
   spec.licenses      = ["MIT"]
   spec.require_paths = ["lib"]
   spec.required_ruby_version = ">= 3.0.0"
